@@ -13,13 +13,27 @@
 ### Have an active subsciption with Azure
 
 
-## Getting started
+## Running Project locally:
 
 ### Create a virtual environment
 
 To run and test project locally one requires a virual environment installed locally. Currently Azure functions supports Python3.6 version. So, let's create one with Python3.6.
 
-> `virtualenv -p python3.6 venv`
+> `$ virtualenv -p python3.6 venv_demo`
 
-> `. venv/bin/activate`
+Activae virtual environment
+
+> `$ . venv_demo/bin/activate`
+
+Install requirements:
+> `$ pip install -r requirements.txt`
+
+...
+
+
+## Creating a local Functions project
+
+A Functions project is the equivalent of a function app in Azure(As they keep saying and it's true!). It can have multiple functions that all share the same local and hosting configurations(Also true!).
+
+> `$ func init HTTPtriggerDemo`
 
