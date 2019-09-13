@@ -37,3 +37,25 @@ A Functions project is the equivalent of a function app in Azure(As they keep sa
 
 > `$ func init HTTPtriggerDemo`
 
+Run the following command to add new function:
+
+> `$ func new`
+
+```
+Select a template:
+1. Azure Blob Storage trigger
+2. Azure Cosmos DB trigger
+3. Azure Event Grid trigger
+4. Azure Event Hub trigger
+5. HTTP trigger
+6. Azure Queue Storage trigger
+7. Azure Service Bus Queue trigger
+8. Azure Service Bus Topic trigger
+9. Timer trigger
+
+The function "HttpTrigger" was created successfully from the "HTTP trigger" template.
+```
+
+To run function locally:
+
+> `$ func host start`
