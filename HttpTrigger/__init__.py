@@ -4,10 +4,11 @@ import json
 import azure.functions as func
 
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def main(req: func.HttpRequest, msg: func.Out[func.QueueMessage]) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
 
     name = req.params.get('name')
+    # if name is passed along the request json body
     if not name:
         try:
             req_body = req.get_json()
@@ -17,6 +18,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             name = req_body.get('name')
 
     if name:
+        # Add name to the queue defined as msg above
+        msg.set(name)
         return func.HttpResponse(
             json.dumps({
                 "method": req.method,

@@ -117,4 +117,63 @@ Use cURL to test the deployed function. Using the URL, including the function ke
 
 extend function by...
 
-Adding Azure Storage Queue output bindings
+## Adding Azure Storage Queue output bindings
+
+Binding to a function is a way of declaratively connecting another resource to the function; bindings may be connected as __input bindings__, __output bindings__, or both. Data from bindings is provided to the function as parameters.
+
+Triggers and bindings let you avoid hardcoding access to other services. Your function receives data (for example, the content of a queue message) in function parameters. You send data (for example, to create a queue message) by using the return value of the function.
+
+Ref: https://docs.microsoft.com/en-gb/azure/azure-functions/functions-add-output-binding-storage-queue-python
+
+* Download the function app settings
+
+> `$ func azure functionapp fetch-app-settings HTTPTrigDemoApp<APP_NAME>`
+
+It will add settings to `local.settings.json` file. Which is already ignored and will not be version controlled. There is `production.example.json` for reference.
+
+* Enable extension bundles
+
+open `host.json` and `extensionBundle` settings.
+
+```
+{
+    "version": "2.0",
+    "extensionBundle": {
+        "id": "Microsoft.Azure.Functions.ExtensionBundle",
+        "version": "[1.*, 2.0.0)"
+    }
+}
+```
+
+After this one can add output bindings to the FunctionApp.
+
+
+* Add an output binding
+
+Update `function.json` and include queue type out binding.
+
+```
+{
+    "type": "queue",
+    "direction": "out",
+    "name": "msg",
+    "queueName": "outqueue",
+    "connection": "AzureWebJobsStorage"
+}
+```
+
+* Run Function locally
+
+> `$ func host start`
+
+and access at `http://localhost:7071/api/HttpTrigger?name=Jay`
+
+Next, you use the Azure CLI to view the new queue and verify that a message was added.
+
+
+
+* To publish again
+
+> `$ func azure functionapp publish <APP_NAME> --build remote`
+
+Remote build succeeded!
