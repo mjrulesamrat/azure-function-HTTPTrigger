@@ -21,7 +21,7 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
             json.dumps({
                 "method": req.method,
                 "url": req.url,
-                "message": f"Hello {name}!"
+                "message": f"Hello {name}!",
                 "headers": dict(req.headers),
                 "params": dict(req.params)                
             })

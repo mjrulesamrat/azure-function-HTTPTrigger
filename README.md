@@ -98,3 +98,23 @@ A function app provides an environment for executing your function code. It lets
 > `$ az functionapp create --resource-group myResourceGroup --os-type Linux \
 --consumption-plan-location westindia  --runtime python \
 --name <APP_NAME> --storage-account  <STORAGE_NAME>`
+
+
+* Deploy the function app project to Azure
+
+After the function app is created in Azure, you can use the func azure functionapp publish Core Tools command to deploy your project code to Azure.
+
+> `$ func azure functionapp publish <APP_NAME> --build remote`
+
+
+Copy the Invoke url value for your HttpTrigger, which you can now use to test your function in Azure. The URL contains a code query string value that is your function key. This key makes it difficult for others to call your HTTP trigger endpoint in Azure.
+
+* Test the function in Azure
+
+Use cURL to test the deployed function. Using the URL, including the function key, that you copied from the previous step, append the query string &name=<yourname> to the URL.
+
+---
+
+extend function by...
+
+Adding Azure Storage Queue output bindings
