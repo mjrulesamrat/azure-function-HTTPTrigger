@@ -9,9 +9,15 @@
 ### Install Azure CLI
 > https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-apt?view=azure-cli-latest#install
 
+Check version :  `$ az --version`
 
 ### Have an active subsciption with Azure
 
+Login to az cli : `$ az login`
+
+latest docs: https://docs.microsoft.com/en-gb/cli/azure/?view=azure-cli-latest
+
+---
 
 ## Running Project locally:
 
@@ -28,7 +34,7 @@ Activae virtual environment
 Install requirements:
 > `$ pip install -r requirements.txt`
 
-...
+---
 
 
 ## Creating a local Functions project
@@ -59,3 +65,36 @@ The function "HttpTrigger" was created successfully from the "HTTP trigger" temp
 To run function locally:
 
 > `$ func host start`
+
+HTTPTrigger can be accessed at below URL:
+
+> HttpTrigger: [GET,POST]  http://localhost:7071/api/HttpTrigger
+
+---
+
+## Create Functions app in Azure
+
+Now that you have run your function locally, you can create the function app, other required resources and storage account in Azure.
+
+* Creating resource group
+
+ An Azure resource group is a logical container into which Azure resources like function apps, databases, and storage accounts are deployed and managed.
+
+> `$ az group create --name <ResourceGroupName> --location westindia`
+
+Available regions: https://azure.microsoft.com/en-gb/global-infrastructure/regions/
+
+* Create an Azure Storage Account
+
+Functions uses a general-purpose account in Azure Storage to maintain state and other information about your functions
+
+> `$ az storage account create --name <storage_name> --location westindia --resource-group <ResourceGroupName> --sku Standard_LRS`
+
+
+* Create a function app in Azure
+
+A function app provides an environment for executing your function code. It lets you group functions as a logical unit for easier management, deployment, and sharing of resources.
+
+> `$ az functionapp create --resource-group myResourceGroup --os-type Linux \
+--consumption-plan-location westindia  --runtime python \
+--name <APP_NAME> --storage-account  <STORAGE_NAME>`
