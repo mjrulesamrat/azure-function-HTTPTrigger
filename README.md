@@ -171,9 +171,11 @@ and access at `http://localhost:7071/api/HttpTrigger?name=Jay`
 Next, you use the Azure CLI to view the new queue and verify that a message was added.
 
 
-
 * To publish again
 
 > `$ func azure functionapp publish <APP_NAME> --build remote`
 
 Remote build succeeded!
+
+
+More Azure Functions with Python examples: https://github.com/yokawasa/azure-functions-python-samples/tree/master/v2functions
